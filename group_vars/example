@@ -1,0 +1,2 @@
+remote_user: vagrant
+deploy_server_hostname: localhost
