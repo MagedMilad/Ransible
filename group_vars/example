@@ -1,2 +1,5 @@
 remote_user: vagrant
 deploy_server_hostname: localhost
+deploy_user: deploy
+deploy_password: password
+ssh_public_key_files: /home/maged-milad/.ssh/id_rsa.pub
