@@ -19,3 +19,4 @@
     - common
     - deploy-user
     - nginx
+    - certbot

@@ -14,3 +14,8 @@ ssh_public_key_files: /home/maged-milad/.ssh/id_rsa.pub
 
 # nginx
 nginx_https_enabled: false
+
+# Certbot
+certbot_url: https://dl.eff.org/certbot-auto
+certbot_dir: /opt/certbot
+certbot_email: magedmilad08@gmail.com
