@@ -1,5 +1,16 @@
+# default remote user
 remote_user: vagrant
+
+# created deploy user
 deploy_server_hostname: localhost
 deploy_user: deploy
 deploy_password: password
+
+deploy_dir: /var/www/
+deploy_app_name: ansible_test
+deploy_rails_env: testing
+
 ssh_public_key_files: /home/maged-milad/.ssh/id_rsa.pub
+
+# nginx
+nginx_https_enabled: false
