@@ -2,3 +2,8 @@
   import_tasks: 'install_rvm.yml'
   become: yes
   become_user: '{{ deploy_user }}'
+
+- name: Install Ruby
+  import_tasks: 'install_ruby.yml'
+  become: yes
+  become_user: '{{ deploy_user }}'

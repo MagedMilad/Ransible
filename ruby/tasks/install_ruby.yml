@@ -1,0 +1,7 @@
+- name: installing Ruby
+  command: "{{ rvm }} install {{ rvm_default_ruby_version }}"
+
+- name: setting default Ruby version
+  shell: "source {{ rvm_init_script }} && rvm use {{ rvm_default_ruby_version }} --default executable=/bin/bash"
+  ignore_errors: true
+  changed_when: false

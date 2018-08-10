@@ -19,3 +19,6 @@ nginx_https_enabled: false
 certbot_url: https://dl.eff.org/certbot-auto
 certbot_dir: /opt/certbot
 certbot_email: magedmilad08@gmail.com
+
+# ruby
+rvm_default_ruby_version: ruby-2.4.1
