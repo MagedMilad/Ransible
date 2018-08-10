@@ -1,0 +1,33 @@
+- name: Detect rvm binary
+  stat: path='{{ rvm }}'
+  register: rvm_binary
+
+- name: Detect rvm installer
+  stat: path='{{ rvm_temp_download_path }}/rvm-installer.sh'
+  register: rvm_installer
+
+- name: Detect current rvm version
+  command: '{{ rvm }} version'
+  changed_when: False
+  register: rvm_current_version
+  when: rvm_binary.stat.exists
+
+- name: Install rvm installer
+  get_url:
+    url: '{{ rvm_latest_installer }}'
+    dest: '{{ rvm_temp_download_path }}/rvm-installer.sh'
+    mode: 0755
+  when: not rvm_installer.stat.exists
+
+- name: Import GPG keys
+  shell: curl -sSL https://rvm.io/mpapis.asc | gpg --import -
+
+- name: Install rvm
+  command: >
+    {{ rvm_temp_download_path }}/rvm-installer.sh stable
+    --path {{ rvm_install_path }} --auto-dotfiles  --user-install
+  when: not rvm_binary.stat.exists
+
+- name: Configure rvm
+  command: '{{ rvm }} autolibs 3'
+  when: not rvm_binary.stat.exists

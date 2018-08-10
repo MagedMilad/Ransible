@@ -1,0 +1,4 @@
+- name: Install RVM
+  import_tasks: 'install_rvm.yml'
+  become: yes
+  become_user: '{{ deploy_user }}'
