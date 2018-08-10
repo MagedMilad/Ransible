@@ -21,3 +21,4 @@
     - nginx
     - certbot
     - ruby
+    - rails
