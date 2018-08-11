@@ -1,0 +1,8 @@
+- name: Detect redis is installed
+  stat:
+    path: /usr/local/bin/redis-server
+  register: redis_server
+
+- name: Install Redis
+  import_tasks: 'install_redis.yml'
+  when: not redis_server.stat.exists

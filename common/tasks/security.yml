@@ -17,7 +17,11 @@
     state: "enabled"
 
 - name: Automated security updates
-  apt: name=unattended-upgrades state=present
+  apt:
+    name: unattended-upgrades
+    state: present
 
 - name: Fail2ban
-  apt: name=fail2ban state=present
+  apt:
+    name: fail2ban
+    state: present

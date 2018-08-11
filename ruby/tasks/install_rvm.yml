@@ -3,7 +3,8 @@
   register: rvm_binary
 
 - name: Detect rvm installer
-  stat: path='{{ rvm_temp_download_path }}/rvm-installer.sh'
+  stat:
+    path: '{{ rvm_temp_download_path }}/rvm-installer.sh'
   register: rvm_installer
 
 - name: Detect current rvm version

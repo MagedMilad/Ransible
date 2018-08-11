@@ -1,0 +1,41 @@
+- name: Download redis stable
+  get_url:
+    url: http://download.redis.io/redis-stable.tar.gz
+    dest: '/tmp'
+
+- name: Unarchive redis installer
+  unarchive:
+    src: /tmp/redis-stable.tar.gz
+    dest: /home/{{ deploy_user }}
+    remote_src: true
+
+- name: make redis directory
+  make:
+    chdir: /home/{{ deploy_user }}/redis-stable
+
+- name: setup redis
+  command: "{{ item }}"
+  args:
+    chdir: /home/{{ deploy_user }}/redis-stable
+  with_items:
+    - cp src/redis-server /usr/local/bin/
+    - cp src/redis-cli /usr/local/bin/
+    - mkdir /etc/redis
+    - mkdir /var/redis
+    - cp utils/redis_init_script /etc/init.d/redis_6379
+    - mkdir /var/redis/6379
+
+- name: copy redis configuration file
+  template:
+    src: 6379.conf
+    dest: /etc/redis/6379.conf
+    owner: root
+    group: root
+
+- name: start redis
+  command: "{{ item }}"
+  args:
+    chdir: /home/{{ deploy_user }}/redis-stable
+  with_items:
+    - update-rc.d redis_6379 defaults
+    - /etc/init.d/redis_6379 start
